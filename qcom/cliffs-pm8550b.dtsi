@@ -11,6 +11,51 @@
 	nvmem-names = "hap_cfg_sdam";
 	nvmem = <&pmk8550_sdam_46>;
 	status = "ok";
+
+	/* Waveform configuration ported from the anorak QXR reference
+	 * design: without the per-effect patterns the driver falls back to
+	 * a raw sine drive, which renders as a harsh buzz for the
+	 * predefined effects (fingerprint click, UI ticks, keyboard).
+	 * Values can be retuned per motor on top of the per-unit f0
+	 * calibration that comes from hap_cfg_sdam. */
+	qcom,vmax-mv = <1300>;
+	qcom,lra-period-us = <5880>;
+
+	effect_0 {
+		/* CLICK */
+		qcom,wf-vmax-mv = <1800>;
+		qcom,wf-pattern-period-us = <5880>;
+	};
+
+	effect_1 {
+		/* DOUBLE_CLICK */
+		qcom,wf-vmax-mv = <1800>;
+		qcom,wf-pattern-period-us = <5880>;
+	};
+
+	effect_2 {
+		/* TICK */
+		qcom,wf-vmax-mv = <1800>;
+		qcom,wf-pattern-period-us = <5880>;
+	};
+
+	effect_3 {
+		/* THUD */
+		qcom,wf-vmax-mv = <1800>;
+		qcom,wf-pattern-period-us = <5880>;
+	};
+
+	effect_4 {
+		/* POP */
+		qcom,wf-vmax-mv = <1800>;
+		qcom,wf-pattern-period-us = <5880>;
+	};
+
+	effect_5 {
+		/* HEAVY CLICK */
+		qcom,wf-vmax-mv = <1800>;
+		qcom,wf-pattern-period-us = <5880>;
+	};
 };
 
 &pm8550b_gpios {
